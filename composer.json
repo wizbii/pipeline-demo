@@ -28,8 +28,7 @@
         "phpunit/phpunit": "~4.4"
     },
     "repositories": [
-        {"type": "git", "url": "ssh://git@bitbucket.org/wizbii/common"},
-        {"type": "git", "url": "ssh://git@bitbucket.org/wizbii/mongo"}
+        {"type": "git", "url": "ssh://git@github.com/wizbii/pipeline"}
     ],
     "scripts": {
         "post-install-cmd": [
