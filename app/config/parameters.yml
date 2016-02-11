@@ -1,0 +1,5 @@
+parameters:
+    wizbii.rabbitmq.domain:   'localhost'
+    wizbii.rabbitmq.port:     5672
+    wizbii.rabbitmq.user:     'guest'
+    wizbii.rabbitmq.password: 'guest'
