@@ -1,0 +1,50 @@
+wizbii_pipeline:
+    name: "profile_pipeline"
+
+    connection:
+        host:     '%wizbii.rabbitmq.domain%'
+        port:     %wizbii.rabbitmq.port%
+        user:     '%wizbii.rabbitmq.user%'
+        password: '%wizbii.rabbitmq.password%'
+        vhost:    '/'
+
+    actions:
+        profile_studied_in_school: ~
+        school_alumni_updated: ~
+        school_aliases_updated:
+            triggered_by_events: [school_alias_created, school_alias_removed]
+
+    stores:
+        # This store updates the projection containing profile identity card : first_name, last_name, title, age,
+        # last school name, network and thanx counters
+        profile_identity_card:
+            service: wizbii.pipeline.stores.profile.identity_card5
+            triggered_by_actions: [profile_studied_in_school]
+            triggered_by_stores: [profile_network]
+
+        # This store updates the projection containing all profiles that have attended a school (ie : alumni)
+        school_alumni:
+            service: wizbii.pipeline.stores.school.alumni
+            triggered_by_actions: [profile_studied_in_school]
+            triggered_event: school_alumni_updated
+
+        # This store updates the projection containing profile stats
+        profile_stats:
+            service: wizbii.pipeline.stores.profile.stats
+            triggered_by_actions: [profile_studied_in_school]
+            triggered_by_stores: [profile_network]
+
+        # This store updates the projection containing the school network of a given profile
+        profile_school_network:
+            service: wizbii.pipeline.stores.profile.school_network
+            triggered_by_actions: [school_alumni_updated, school_aliases_updated]
+
+        # This store updates the projection containing the global network of a given profile : school, friends and friends of friends
+        profile_network:
+            service: wizbii.pipeline.stores.profile.network
+            triggered_by_stores: [profile_school_network]
+
+        # This store updates the projection containing the profile as indexed in a search engine
+        profile_search:
+            service: wizbii.pipeline.stores.profile.search
+            triggered_by_stores: [profile_network]
