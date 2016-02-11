@@ -11,3 +11,7 @@
 /bin/
 /composer.phar
 app/Resources/apache/*.conf
+
+# IntelliJ/PhpStorm
+.idea/
+/*.iml
