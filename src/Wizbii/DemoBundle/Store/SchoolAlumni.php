@@ -6,6 +6,7 @@ use Wizbii\DemoBundle\Mongo\MongoBasicDao;
 use Wizbii\PipelineBundle\Model\Action;
 use Wizbii\PipelineBundle\Model\DataBag;
 use Wizbii\PipelineBundle\Runnable\BaseStore;
+use Wizbii\PipelineBundle\Runnable\EventsGenerator\CollectionEventsGenerator;
 
 class SchoolAlumni extends BaseStore
 {
@@ -36,14 +37,14 @@ class SchoolAlumni extends BaseStore
         $this->mongoBasicDao->put(self::COLLECTION, $schoolAlumni);
 
         // send asynchrone events
-        $eventsConfig = [];
+        $dataBags = [];
         foreach ($schoolAlumni["alumni"] as $alumni) {
-            $eventsConfig[] = new DataBag([
+            $dataBags[] = new DataBag([
                 "profile_id" => $alumni,
                 "school_alumni" => $schoolAlumni["alumni"]
             ]);
         }
-        return $eventsConfig;
+        return new CollectionEventsGenerator($dataBags);
     }
 
     /**
