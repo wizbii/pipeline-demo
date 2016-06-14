@@ -2,52 +2,18 @@ services:
     wizbii.demo.mongo:
         class: 'Wizbii\DemoBundle\Mongo\MongoBasicDao'
 
-    wizbii.pipeline.stores.profile.identity_card:
-        class: 'Wizbii\DemoBundle\Store\ProfileIdentityCard'
+    wizbii.pipeline.stores.conversation:
+        class: 'Wizbii\DemoBundle\Store\ConversationStore'
         properties:
             mongoBasicDao: '@wizbii.demo.mongo'
 
-    wizbii.pipeline.stores.profile.identity_card2:
-        class: 'Wizbii\DemoBundle\Store\ProfileIdentityCard2'
+    wizbii.pipeline.stores.user_messages:
+        class: 'Wizbii\DemoBundle\Store\UserMessagesStore'
         properties:
             mongoBasicDao: '@wizbii.demo.mongo'
 
-    wizbii.pipeline.stores.profile.identity_card3:
-        class: 'Wizbii\DemoBundle\Store\ProfileIdentityCard3'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
+    wizbii.pipeline.spam.detector:
+        class: 'Wizbii\DemoBundle\Spam\SpammerDetector'
 
-    wizbii.pipeline.stores.profile.identity_card4:
-        class: 'Wizbii\DemoBundle\Store\ProfileIdentityCard4'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
-
-    wizbii.pipeline.stores.profile.identity_card5:
-        class: 'Wizbii\DemoBundle\Store\ProfileIdentityCard5'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
-
-    wizbii.pipeline.stores.school.alumni:
-        class: 'Wizbii\DemoBundle\Store\SchoolAlumni'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
-
-    wizbii.pipeline.stores.profile.stats:
-        class: 'Wizbii\DemoBundle\Store\ProfileStats'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
-
-    wizbii.pipeline.stores.profile.school_network:
-        class: 'Wizbii\DemoBundle\Store\ProfileSchoolNetwork'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
-
-    wizbii.pipeline.stores.profile.network:
-        class: 'Wizbii\DemoBundle\Store\ProfileNetwork'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
-
-    wizbii.pipeline.stores.profile.search:
-        class: 'Wizbii\DemoBundle\Store\ProfileSearch'
-        properties:
-            mongoBasicDao: '@wizbii.demo.mongo'
+    wizbii.pipeline.spam.killer:
+        class: 'Wizbii\DemoBundle\Spam\SpammerKiller'
