@@ -2059,7 +2059,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@github.com/wizbii/pipeline",
-                "reference": "04d69aacdce66fb798aa8655d53f9687527cf5c9"
+                "reference": "c8a5af70572bb8a89777c1d479635cc932ca63b2"
             },
             "require": {
                 "jms/serializer-bundle": "~1.1"
@@ -2077,7 +2077,7 @@
                     "Wizbii\\PipelineBundle\\": ""
                 }
             },
-            "time": "2016-06-12 18:08:41"
+            "time": "2016-06-14 12:32:27"
         }
     ],
     "packages-dev": [
